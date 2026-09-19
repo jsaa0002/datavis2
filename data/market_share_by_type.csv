@@ -1,0 +1,6 @@
+accommodation_type,market_share_pct,market_value_aud_billion,x,y,x2,y2
+Hotels,58,71.40,0.0,0.0,0.762,0.761
+Serviced Apartments,19,23.39,0.0,0.761,0.499,1.0
+Resorts,12,14.77,0.499,0.761,0.814,1.0
+Motels,7,8.62,0.814,0.761,0.999,1.0
+Others,4,4.92,0.762,0.0,1.0,0.314

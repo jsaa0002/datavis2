@@ -1,0 +1,6 @@
+segment,percentage,value_aud_billion,x,y,x2,y2
+Accommodation,38,46.78,0.0000,0.4872,0.6494,1.0000
+Food & Beverage,33,40.62,0.6494,0.4872,1.0000,1.0000
+Travel & Tourism Services,19,23.39,0.0000,0.0000,0.4589,0.4872
+Events & MICE,7,8.62,0.4589,0.0000,0.7237,0.4872
+Others,3,3.69,0.7237,0.0000,1.0000,0.4872
