@@ -1,0 +1,135 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Market Share by Accommodation Type (2024)",
+    "subtitle": "Total market: AUD 123.1 Billion",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 12
+  },
+  "width": "container",
+  "height": 320,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/market_share_by_type.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "x": "number",
+        "y": "number",
+        "x2": "number",
+        "y2": "number",
+        "market_share_pct": "number",
+        "market_value_aud_billion": "number"
+      }
+    }
+  },
+  "transform": [
+    { "calculate": "(datum.x + datum.x2) / 2", "as": "cx" },
+    { "calculate": "(datum.y + datum.y2) / 2", "as": "cy" },
+    { "calculate": "datum.market_share_pct + '%'", "as": "share_label" },
+    { "calculate": "datum.market_value_aud_billion > 0 ? '$' + format(datum.market_value_aud_billion, '.2f') + 'B' : ''", "as": "value_label" }
+  ],
+  "encoding": {
+    "x": {
+      "field": "x",
+      "type": "quantitative",
+      "axis": null,
+      "scale": { "domain": [0, 1], "nice": false, "zero": true }
+    },
+    "y": {
+      "field": "y",
+      "type": "quantitative",
+      "axis": null,
+      "scale": { "domain": [0, 1], "nice": false, "zero": true }
+    },
+    "x2": { "field": "x2" },
+    "y2": { "field": "y2" }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#ffffff",
+        "strokeWidth": 2,
+        "cornerRadius": 3
+      },
+      "encoding": {
+        "color": {
+          "field": "accommodation_type",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Hotels", "Serviced Apartments", "Resorts", "Motels", "Others"],
+            "range": ["#0b2d5c", "#1f7a8c", "#6a994e", "#f2a900", "#9aa0a6"]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": null,
+            "labelFontSize": 11,
+            "symbolSize": 90,
+            "rowPadding": 4
+          }
+        },
+        "tooltip": [
+          { "field": "accommodation_type", "type": "nominal", "title": "Type" },
+          { "field": "market_share_pct", "type": "quantitative", "title": "Market Share (%)" },
+          { "field": "market_value_aud_billion", "type": "quantitative", "title": "Market Value (A$B)", "format": ".2f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "#ffffff",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "align": "center",
+        "baseline": "middle",
+        "limit": 110
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "accommodation_type", "type": "nominal" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "#e5e7eb",
+        "fontSize": 11,
+        "align": "center",
+        "baseline": "middle",
+        "dy": 16
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "share_label", "type": "nominal" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "#cbd5e1",
+        "fontSize": 10,
+        "align": "center",
+        "baseline": "middle",
+        "dy": 30
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "value_label", "type": "nominal" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null }
+  }
+}

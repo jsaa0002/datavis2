@@ -1,0 +1,152 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Market Share by Segment (2024)",
+    "subtitle": "Total market: AUD 123.1 Billion",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 12
+  },
+  "width": "container",
+  "height": 320,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/market_share_by_segment_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "x": "number",
+        "y": "number",
+        "x2": "number",
+        "y2": "number",
+        "percentage": "number",
+        "value_aud_billion": "number"
+      }
+    }
+  },
+  "transform": [
+    { "calculate": "(datum.x + datum.x2) / 2", "as": "cx" },
+    { "calculate": "(datum.y + datum.y2) / 2", "as": "cy" },
+    { "calculate": "datum.percentage + '%'", "as": "share_label" },
+    { "calculate": "datum.value_aud_billion > 0 ? '$' + format(datum.value_aud_billion, '.2f') + 'B' : ''", "as": "value_label" },
+    {
+      "calculate": "datum.segment == 'Travel & Tourism Services' ? ['Travel &', 'Tourism'] : datum.segment == 'Food & Beverage' ? ['Food &', 'Beverage'] : datum.segment == 'Events & MICE' ? ['Events &', 'MICE'] : datum.segment",
+      "as": "display_label"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "x",
+      "type": "quantitative",
+      "axis": null,
+      "scale": { "domain": [0, 1], "nice": false }
+    },
+    "y": {
+      "field": "y",
+      "type": "quantitative",
+      "axis": null,
+      "scale": { "domain": [0, 1], "nice": false }
+    },
+    "x2": { "field": "x2" },
+    "y2": { "field": "y2" }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#ffffff",
+        "strokeWidth": 2,
+        "cornerRadius": 3
+      },
+      "encoding": {
+        "color": {
+          "field": "segment",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Accommodation",
+              "Food & Beverage",
+              "Travel & Tourism Services",
+              "Events & MICE",
+              "Others"
+            ],
+            "range": [
+              "#0d2b5c",
+              "#127475",
+              "#5c7d2b",
+              "#e09e0b",
+              "#8b929d"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": null,
+            "labelFontSize": 11,
+            "symbolSize": 90,
+            "rowPadding": 4
+          }
+        },
+        "tooltip": [
+          { "field": "segment", "type": "nominal", "title": "Segment" },
+          { "field": "percentage", "type": "quantitative", "title": "Share (%)" },
+          { "field": "value_aud_billion", "type": "quantitative", "title": "Value (A$B)", "format": ".2f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "#ffffff",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "align": "center",
+        "baseline": "middle",
+        "lineBreak": "\n",
+        "limit": 105
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "display_label", "type": "nominal" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "#e5e7eb",
+        "fontSize": 11,
+        "align": "center",
+        "baseline": "middle",
+        "dy": 18
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "share_label", "type": "nominal" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "#cbd5e1",
+        "fontSize": 10,
+        "align": "center",
+        "baseline": "middle",
+        "dy": 32
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "value_label", "type": "nominal" }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null }
+  }
+}

@@ -56,18 +56,41 @@
       </div>
 
 
-	<div class="pure-g chart-row">
-        <div class="pure-u-1 chart-cell">
+			<div class="pure-g chart-row">
+					<div class="pure-u-1 chart-cell">
+						<div class="chart-card">
+							<div id="vis-state-room-rate-occupancy" class="vis-container" style="text-align: center;"></div>
+							<p class="caption">
+								Graduated symbol map displaying regional daily room rates (circle area) and occupancy rates (circle color) for March 2024. Sources: STR Global / Ray White.
+							</p>
+						</div>
+					</div>
+				</div>
+				      <div class="pure-g chart-row">
+        <!-- Left Chart: Class Trends -->
+        <div class="pure-u-1-2 chart-cell">
           <div class="chart-card">
-            <div id="vis-state-room-rate-occupancy" class="vis-container" style="text-align: center;"></div>
+            <div id="vis-market_share_type" class="vis-container"></div>
             <p class="caption">
-              Graduated symbol map displaying regional daily room rates (circle area) and occupancy rates (circle color) for March 2024. Sources: STR Global / Ray White.
+              Market share of Australian accommodation types by revenue, 2024. 
             </p>
           </div>
         </div>
+        <div class="pure-u-1-2 chart-cell">
+          <div class="chart-card">
+            <div id="vis-market_share_sector" class="vis-container"></div>
+            <p class="caption">
+              Market share of Australian accommodation types by revenue, 2024. 
+            </p>
+          </div>
+        </div>
+
       </div>
-    </div>
-    </div>
+			</div>
+
+		      <!-- Two-Chart Layout Section -->
+
+		</div>
     <!-- Separate Embed Script (or place in js/vega_lite_vis.js) -->
     <script type="text/javascript">
       const embedOpts = { actions: false };
@@ -87,6 +110,18 @@
       vegaEmbed(
         "#vis-state-room-rate-occupancy",
         "json/regional_rates_map.vg.json",
+        embedOpts,
+      ).catch(console.error);
+
+      vegaEmbed(
+        "#vis-market_share_type",
+        "json/type_market_share_treemap.vg.json",
+        embedOpts,
+      ).catch(console.error);
+
+      vegaEmbed(
+        "#vis-market_share_sector",
+        "json/segment_market_share_treemap.vg.json",
         embedOpts,
       ).catch(console.error);
     </script>
