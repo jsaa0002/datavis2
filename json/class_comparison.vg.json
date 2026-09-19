@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Quarterly Room Occupancy Rate by Class (2014–2016)",
+    "fontSize": 14,
+    "anchor": "start"
+  },
+  "width": "container",
+  "height": 300,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/tourist_accommodation_by_class.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.accommodation_class != 'Total Accommodation'"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+  "encoding": {
+    "x": {
+      "field": "date",
+      "type": "temporal",
+      "title": "Quarter",
+      "axis": {
+        "format": "%b %y",
+        "labelAngle": -45,
+        "tickCount": 8
+      }
+    },
+    "y": {
+      "field": "room_occupancy_rate_pct",
+      "type": "quantitative",
+      "title": "Occupancy Rate (%)",
+      "scale": {
+        "domain": [40, 90]
+      }
+    },
+    "color": {
+      "field": "accommodation_class",
+      "type": "nominal",
+      "title": null,
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal"
+      },
+      "scale": {
+        "domain": ["Budget", "Mid-Scale", "Up Scale", "Luxury"],
+        "range": ["#4e79a7", "#f28e2b", "#e15759", "#76b7b2"]
+      }
+    },
+    "tooltip": [
+      {"field": "accommodation_class", "type": "nominal", "title": "Class"},
+      {"field": "date", "type": "temporal", "title": "Quarter", "format": "%B %Y"},
+      {"field": "room_occupancy_rate_pct", "type": "quantitative", "title": "Occupancy (%)", "format": ".1f"},
+      {"field": "avg_takings_per_room_occupied_aud", "type": "quantitative", "title": "ADR ($)", "format": "$.2f"}
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Quarterly Takings by State & Territory",
+    "fontSize": 14,
+    "anchor": "start"
+  },
+  "width": "container",
+  "height": 300,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/tourist_accommodation_by_state.csv"
+  },
+  "params": [
+    {
+      "name": "selected_date",
+      "value": "2016-06-01",
+      "bind": {
+        "input": "select",
+        "options": [
+          "2014-09-01",
+          "2014-12-01",
+          "2015-03-01",
+          "2015-06-01",
+          "2015-09-01",
+          "2015-12-01",
+          "2016-03-01",
+          "2016-06-01"
+        ],
+        "labels": [
+          "Sep 2014",
+          "Dec 2014",
+          "Mar 2015",
+          "Jun 2015",
+          "Sep 2015",
+          "Dec 2015",
+          "Mar 2016",
+          "Jun 2016"
+        ],
+        "name": "Select Quarter: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.state != 'Australia'"},
+    {"filter": "datum.date == selected_date"}
+  ],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {
+        "labelLimit": 130
+      }
+    },
+    "x": {
+      "field": "takings_thousand_aud",
+      "type": "quantitative",
+      "title": "Takings ($'000 AUD)",
+      "axis": {
+        "format": "~s"
+      }
+    },
+    "color": {
+      "field": "state",
+      "type": "nominal",
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "state", "type": "nominal", "title": "State"},
+      {"field": "quarter", "type": "nominal", "title": "Quarter"},
+      {"field": "year", "type": "nominal", "title": "Year"},
+      {"field": "takings_thousand_aud", "type": "quantitative", "title": "Takings ($'000)", "format": "$,.0f"},
+      {"field": "room_occupancy_rate_pct", "type": "quantitative", "title": "Occupancy Rate (%)", "format": ".1f"}
+    ]
+  }
+}

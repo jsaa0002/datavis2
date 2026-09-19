@@ -1,0 +1,132 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Daily Room Rates and Occupancy Across Australian Regions (March 2024)",
+    "fontSize": 16,
+    "anchor": "start",
+    "offset": 20
+  },
+  "projection": {
+    "type": "equirectangular",
+    "center": [133.5, -28],
+    "scale": 850
+  },
+  "layer": [
+    {
+      "width": 800,
+      "height": 520,
+      "data": {
+        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eef2f6",
+        "stroke": "#cbd5e1",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "width": 800,
+      "height": 520,
+      "data": {
+        "url": "data/room_rates_and_occupancy_by_state.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "longitude": "number",
+            "latitude": "number",
+            "occupancy_pct": "number",
+            "daily_rate_aud": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.85,
+        "stroke": "#0f172a",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "daily_rate_aud",
+          "type": "quantitative",
+          "title": "Daily Rate (AUD)",
+          "scale": {
+            "domain": [140, 300],
+            "range": [100, 700]
+          },
+          "legend": {
+            "orient": "right",
+            "format": "$.0f"
+          }
+        },
+        "color": {
+          "field": "occupancy_pct",
+          "type": "quantitative",
+          "title": "Occupancy Rate (%)",
+          "scale": {
+            "scheme": "redyellowgreen",
+            "domain": [40, 90]
+          },
+          "legend": {
+            "orient": "right",
+            "format": ".0f"
+          }
+        },
+        "tooltip": [
+          { "field": "region", "type": "nominal", "title": "Region" },
+          { "field": "daily_rate_aud", "type": "quantitative", "title": "Daily Rate", "format": "$.2f" },
+          { "field": "occupancy_pct", "type": "quantitative", "title": "Occupancy Rate (%)", "format": ".1f" },
+          { "field": "month", "type": "nominal", "title": "Period" }
+        ]
+      }
+    },
+    {
+      "width": 800,
+      "height": 520,
+      "data": {
+        "url": "data/room_rates_and_occupancy_by_state.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "longitude": "number",
+            "latitude": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "text",
+        "dy": -20,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#1e293b"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "region",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}
