@@ -1,3 +1,5 @@
+<!-- full width charts will be reduced when i add "story" -->
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -55,24 +57,29 @@
         </div>
       </div>
 
-
-			<div class="pure-g chart-row">
-					<div class="pure-u-1 chart-cell">
-						<div class="chart-card">
-							<div id="vis-state-room-rate-occupancy" class="vis-container" style="text-align: center;"></div>
-							<p class="caption">
-								Graduated symbol map displaying regional daily room rates (circle area) and occupancy rates (circle color) for March 2024. Sources: STR Global / Ray White.
-							</p>
-						</div>
-					</div>
-				</div>
-				      <div class="pure-g chart-row">
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 chart-cell">
+          <div class="chart-card">
+            <div
+              id="vis-state-room-rate-occupancy"
+              class="vis-container"
+              style="text-align: center"
+            ></div>
+            <p class="caption">
+              Graduated symbol map displaying regional daily room rates (circle
+              area) and occupancy rates (circle color) for March 2024. Sources:
+              STR Global / Ray White.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g chart-row">
         <!-- Left Chart: Class Trends -->
         <div class="pure-u-1-2 chart-cell">
           <div class="chart-card">
             <div id="vis-market_share_type" class="vis-container"></div>
             <p class="caption">
-              Market share of Australian accommodation types by revenue, 2024. 
+              Market share of Australian accommodation types by revenue, 2024.
             </p>
           </div>
         </div>
@@ -80,17 +87,50 @@
           <div class="chart-card">
             <div id="vis-market_share_sector" class="vis-container"></div>
             <p class="caption">
-              Market share of Australian accommodation types by revenue, 2024. 
+              Market share of Australian accommodation types by revenue, 2024.
             </p>
           </div>
         </div>
-
       </div>
-			</div>
+      <div class="pure-g chart-row">
+        <!-- Left Chart: Class Trends -->
+        <div class="pure-u-1-1 chart-cell">
+          <div class="chart-card">
+            <div id="vis-visitor_nights" class="vis-container"></div>
+            <p class="caption">
+              International visitor nights by accommodation type, year ending
+              December 2024. Area = nights ('000). Colour = % change vs 2023.
+              Source: ABS.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g chart-row">
+        <!-- Left Chart: Class Trends -->
+        <div class="pure-u-1-1 chart-cell">
+          <div class="chart-card">
+            <div id="vis-tourism-jobs" class="vis-container"></div>
+            <p class="caption">
+              tourism jobs placeholder<br />https://www.abs.gov.au/statistics/economy/national-accounts/tourism-satellite-account/latest-release
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g chart-row">
+        <!-- Left Chart: Class Trends -->
+        <div class="pure-u-1-1 chart-cell">
+          <div class="chart-card">
+            <div id="vis-tourism-spending" class="vis-container"></div>
+            <p class="caption">
+              placeholder
+              <br />https://www.abs.gov.au/statistics/economy/national-accounts/tourism-satellite-account/latest-release
+            </p>
+          </div>
+        </div>
+      </div>
 
-		      <!-- Two-Chart Layout Section -->
-
-		</div>
+      <!-- Two-Chart Layout Section -->
+    </div>
     <!-- Separate Embed Script (or place in js/vega_lite_vis.js) -->
     <script type="text/javascript">
       const embedOpts = { actions: false };
@@ -122,6 +162,24 @@
       vegaEmbed(
         "#vis-market_share_sector",
         "json/segment_market_share_treemap.vg.json",
+        embedOpts,
+      ).catch(console.error);
+
+      vegaEmbed(
+        "#vis-visitor_nights",
+        "json/visitor_nights_treemap.vg.json",
+        embedOpts,
+      ).catch(console.error);
+
+      vegaEmbed(
+        "#vis-tourism-jobs",
+        "json/tourism_jobs_diverging_lollipop.vg.json",
+        embedOpts,
+      ).catch(console.error);
+
+      vegaEmbed(
+        "#vis-tourism-spending",
+        "json/tourism_spending_streamgraph.vg.json",
         embedOpts,
       ).catch(console.error);
     </script>
