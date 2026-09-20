@@ -1,0 +1,160 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Leading Challenges for the Australian Accommodation Industry",
+    "subtitle": "Survey of 250 industry executives (Spring 2023). Dashed rule = 57.9% industry average. Source: Booking.com / Statista.",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 16
+  },
+  "width": "container",
+  "height": 420,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/accommodation_industry_challenges_2023.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#f1f5f9"
+      },
+      "encoding": {
+        "y": {
+          "field": "challenge",
+          "type": "nominal",
+          "sort": {"field": "percentage", "order": "descending"},
+          "axis": {
+            "title": null,
+            "labelFontSize": 12,
+            "labelLimit": 260
+          }
+        },
+        "x": {"datum": 0},
+        "x2": {"datum": 50}
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#e2e8f0"
+      },
+      "encoding": {
+        "y": {
+          "field": "challenge",
+          "type": "nominal",
+          "sort": {"field": "percentage", "order": "descending"}
+        },
+        "x": {"datum": 50},
+        "x2": {"datum": 65}
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#cbd5e1"
+      },
+      "encoding": {
+        "y": {
+          "field": "challenge",
+          "type": "nominal",
+          "sort": {"field": "percentage", "order": "descending"}
+        },
+        "x": {"datum": 65},
+        "x2": {"datum": 100}
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "height": 12,
+        "cornerRadiusEnd": 2
+      },
+      "encoding": {
+        "y": {
+          "field": "challenge",
+          "type": "nominal",
+          "sort": {"field": "percentage", "order": "descending"}
+        },
+        "x": {
+          "field": "percentage",
+          "type": "quantitative",
+          "title": "Proportion of Accommodation Operators Impacted (%)",
+          "scale": {"domain": [0, 85]}
+        },
+        "color": {
+          "field": "category",
+          "type": "nominal",
+          "title": "Strategic Pillar",
+          "scale": {
+            "domain": [
+              "Cost & Overheads",
+              "Regulatory & Policy",
+              "Capital & Growth",
+              "Macroeconomic",
+              "Market & Competition",
+              "ESG & Operations"
+            ],
+            "range": [
+              "#0b2d5c",
+              "#d97706",
+              "#2563eb",
+              "#dc2626",
+              "#0d9488",
+              "#475569"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": null,
+            "labelFontSize": 11,
+            "columns": 3
+          }
+        },
+        "tooltip": [
+          {"field": "challenge", "type": "nominal", "title": "Challenge"},
+          {"field": "percentage", "type": "quantitative", "title": "Impacted Operators (%)", "format": ".0f"},
+          {"field": "category", "type": "nominal", "title": "Category"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#0f172a",
+        "strokeWidth": 2,
+        "strokeDash": [4, 3]
+      },
+      "encoding": {
+        "x": {"datum": 57.9}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#0f172a"
+      },
+      "encoding": {
+        "y": {
+          "field": "challenge",
+          "type": "nominal",
+          "sort": {"field": "percentage", "order": "descending"}
+        },
+        "x": {"field": "percentage", "type": "quantitative"},
+        "text": {"field": "percentage", "type": "quantitative", "format": ".0f"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
+}
