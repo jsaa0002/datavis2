@@ -1,0 +1,12 @@
+accommodation_type,nights_2023_thousands,nights_2024_thousands,percent_change,proportion_2024,x,y,x2,y2
+Rented house/apartment/flat or unit,85996,113664,32,38.5,0.0000,0.0000,0.7014,0.5494
+Friends or relatives property,83253,93219,12,31.6,0.0000,0.5494,0.7014,1.0000
+Hotel/resort/motel or motor Inn,32865,44378,35,15.0,0.7014,0.0000,1.0000,0.5040
+Other Private Accommodation,8397,10557,26,3.6,0.7014,0.5040,0.8513,0.7428
+Backpacker or hostel,11287,10470,-7,3.5,0.8513,0.5040,1.0000,0.7428
+Other Accommodation,10248,8541,-17,2.9,0.7014,0.7428,0.9084,0.8827
+Other commercial accommodation,4055,7164,77,2.4,0.7014,0.8827,0.9084,1.0000
+Caravan park or commercial camping ground,2220,2434,10,0.8,0.9084,0.7428,1.0000,0.8329
+Own property,3404,2620,-23,0.9,0.9084,0.8329,1.0000,0.9299
+Caravan or camping - non commercial,1057,1173,11,0.4,0.9084,0.9299,0.9652,1.0000
+Guest house or Bed & Breakfast,257,720,180,0.2,0.9652,0.9299,1.0000,1.0000
