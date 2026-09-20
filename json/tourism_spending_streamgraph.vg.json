@@ -1,0 +1,78 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Internal Tourism Consumption by Product Category (2016–17 to 2024–25)",
+    "subtitle": "Accommodation services expanded from $11.7B to $21.8B following the 2020–21 contraction",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 16
+  },
+  "width": "container",
+  "height": 380,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/tourism_consumption_by_category_2016_2025.csv"
+  },
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone"
+  },
+  "encoding": {
+    "x": {
+      "field": "financial_year",
+      "type": "nominal",
+      "title": "Financial Year",
+      "axis": {
+        "labelAngle": -45,
+        "grid": true
+      }
+    },
+    "y": {
+      "field": "expenditure_millions",
+      "type": "quantitative",
+      "stack": "center",
+      "axis": null
+    },
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Accommodation Services",
+          "Vacation Home Rent",
+          "Food & Beverage",
+          "Transport Services",
+          "Shopping & Retail"
+        ],
+        "range": [
+          "#0f4c81",
+          "#4a90e2",
+          "#10b981",
+          "#f59e0b",
+          "#94a3b8"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "title": null
+      }
+    },
+    "opacity": {
+      "condition": {
+        "test": "datum.category == 'Accommodation Services' || datum.category == 'Vacation Home Rent'",
+        "value": 1.0
+      },
+      "value": 0.55
+    },
+    "tooltip": [
+      {"field": "category", "type": "nominal", "title": "Category"},
+      {"field": "financial_year", "type": "nominal", "title": "Year"},
+      {"field": "expenditure_millions", "type": "quantitative", "title": "Spend ($M AUD)", "format": "$,.0f"}
+    ]
+  }
+}

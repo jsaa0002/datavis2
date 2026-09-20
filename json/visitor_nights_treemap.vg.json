@@ -1,0 +1,171 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "International Visitor Nights by Accommodation Type (2024)",
+    "subtitle": "Total: 294,941 thousand nights. Area = nights. Colour = % change vs 2023.",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 16
+  },
+  "width": "container",
+  "height": 480,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/visitor_nights_by_accommodation_2024.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "x": "number",
+        "y": "number",
+        "x2": "number",
+        "y2": "number",
+        "nights_2023_thousands": "number",
+        "nights_2024_thousands": "number",
+        "proportion_2024": "number",
+        "percent_change": "number"
+      }
+    }
+  },
+  "transform": [
+    { "calculate": "(datum.x + datum.x2) / 2", "as": "cx" },
+    { "calculate": "(datum.y + datum.y2) / 2", "as": "cy" },
+    { "calculate": "datum.proportion_2024 + '%'", "as": "share_label" },
+    {
+      "calculate": "datum.percent_change > 0 ? '+' + datum.percent_change + '%' : datum.percent_change + '%'",
+      "as": "change_label"
+    },
+    {
+      "calculate": "datum.accommodation_type == 'Rented house/apartment/flat or unit' ? ['Rented house /', 'apartment / flat'] : datum.accommodation_type == 'Friends or relatives property' ? ['Friends or relatives', 'property'] : datum.accommodation_type == 'Hotel/resort/motel or motor Inn' ? ['Hotel / resort /', 'motel or motor inn'] : datum.accommodation_type == 'Other Private Accommodation' ? ['Other Private', 'Accommodation'] : datum.accommodation_type == 'Other commercial accommodation' ? ['Other commercial', 'accommodation'] : datum.accommodation_type",
+      "as": "display_type"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "x",
+      "type": "quantitative",
+      "axis": null,
+      "scale": { "domain": [0, 1], "nice": false }
+    },
+    "y": {
+      "field": "y",
+      "type": "quantitative",
+      "axis": null,
+      "scale": { "domain": [0, 1], "nice": false }
+    },
+    "x2": { "field": "x2" },
+    "y2": { "field": "y2" }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#ffffff",
+        "strokeWidth": 2,
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "color": {
+          "field": "percent_change",
+          "type": "quantitative",
+          "title": "% change vs 2023",
+          "scale": {
+            "domain": [-25, 0, 80],
+            "range": ["#ca0020", "#f7f7f7", "#0571b0"],
+            "clamp": true
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "gradientLength": 320,
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "labelExpr": "datum.value > 0 ? '+' + datum.value + '%' : datum.value + '%'"
+          }
+        },
+        "tooltip": [
+          { "field": "accommodation_type", "type": "nominal", "title": "Accommodation" },
+          { "field": "nights_2024_thousands", "type": "quantitative", "title": "Nights 2024 ('000)", "format": ",.0f" },
+          { "field": "nights_2023_thousands", "type": "quantitative", "title": "Nights 2023 ('000)", "format": ",.0f" },
+          { "field": "proportion_2024", "type": "quantitative", "title": "Share of Total (%)", "format": ".1f" },
+          { "field": "percent_change", "type": "quantitative", "title": "YoY Change (%)", "format": "+.0f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "align": "center",
+        "baseline": "middle",
+        "fill": "#0f172a",
+        "limit": 180,
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "display_type", "type": "nominal" },
+        "opacity": {
+          "condition": {
+            "test": "(datum.x2 - datum.x) >= 0.14 && (datum.y2 - datum.y) >= 0.12",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "align": "center",
+        "baseline": "middle",
+        "fill": "#334155",
+        "dy": 18
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "share_label", "type": "nominal" },
+        "opacity": {
+          "condition": {
+            "test": "(datum.x2 - datum.x) >= 0.14 && (datum.y2 - datum.y) >= 0.12",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontWeight": 600,
+        "align": "center",
+        "baseline": "middle",
+        "fill": "#1e293b",
+        "dy": 32
+      },
+      "encoding": {
+        "x": { "field": "cx", "type": "quantitative" },
+        "y": { "field": "cy", "type": "quantitative" },
+        "text": { "field": "change_label", "type": "nominal" },
+        "opacity": {
+          "condition": {
+            "test": "(datum.x2 - datum.x) >= 0.14 && (datum.y2 - datum.y) >= 0.14",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Change in Tourism Filled Jobs by Industry (2023-24 to 2024-25)",
+    "subtitle": "Accommodation generated +11.7k jobs, outpacing all other tourism sectors combined",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 16
+  },
+  "width": "container",
+  "height": 300,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/change_in_tourism_filled_jobs_2023_2025.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.tourism_industry == 'Accommodation' ? 'Focus: Accommodation' : (datum.filled_jobs_thousands >= 0 ? 'Other Growth' : 'Contraction')",
+      "as": "highlight_group"
+    },
+    {
+      "calculate": "datum.filled_jobs_thousands > 0 ? '+' + datum.filled_jobs_thousands + 'k' : datum.filled_jobs_thousands + 'k'",
+      "as": "val_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#cbd5e1",
+        "strokeWidth": 1.5,
+        "strokeDash": [4, 4]
+      },
+      "encoding": {
+        "x": {"datum": 0}
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2.5
+      },
+      "encoding": {
+        "y": {
+          "field": "tourism_industry",
+          "type": "nominal",
+          "sort": "-x",
+          "title": null,
+          "axis": {
+            "labelFontSize": 11,
+            "labelLimit": 220
+          }
+        },
+        "x": {
+          "field": "filled_jobs_thousands",
+          "type": "quantitative",
+          "title": "Change in Filled Jobs ('000)",
+          "scale": {"domain": [-6, 14]}
+        },
+        "x2": {"datum": 0},
+        "color": {
+          "field": "highlight_group",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Focus: Accommodation", "Other Growth", "Contraction"],
+            "range": ["#0f4c81", "#94a3b8", "#f87171"]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": null
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 160,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "tourism_industry",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "filled_jobs_thousands",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "highlight_group",
+          "type": "nominal"
+        },
+        "tooltip": [
+          {"field": "tourism_industry", "type": "nominal", "title": "Industry"},
+          {"field": "filled_jobs_thousands", "type": "quantitative", "title": "Jobs Change ('000)", "format": "+.1f"},
+          {"field": "period", "type": "nominal", "title": "Period"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "y": {
+          "field": "tourism_industry",
+          "type": "nominal",
+          "sort": "-x"
+        },
+        "x": {
+          "field": "filled_jobs_thousands",
+          "type": "quantitative"
+        },
+        "text": {"field": "val_label", "type": "nominal"},
+        "dx": {
+          "condition": {"test": "datum.filled_jobs_thousands >= 0", "value": 14},
+          "value": -14
+        },
+        "align": {
+          "condition": {"test": "datum.filled_jobs_thousands >= 0", "value": "left"},
+          "value": "right"
+        },
+        "color": {
+          "condition": {"test": "datum.tourism_industry == 'Accommodation'", "value": "#0f4c81"},
+          "value": "#475569"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
+}
