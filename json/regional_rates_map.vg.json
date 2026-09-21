@@ -13,7 +13,7 @@
   },
   "layer": [
     {
-      "width": 800,
+      "width": "container",
       "height": 520,
       "data": {
         "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australian-states.json",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "width": 800,
+      "width": "container",
       "height": 520,
       "data": {
         "url": "data/room_rates_and_occupancy_by_state.csv",
@@ -68,8 +68,11 @@
             "range": [100, 700]
           },
           "legend": {
-            "orient": "right",
-            "format": "$.0f"
+            "orient": "bottom",
+            "direction": "horizontal",
+            "format": "$.0f",
+            "title": "Daily Rate (AUD)",
+            "tickCount": 4
           }
         },
         "color": {
@@ -81,8 +84,11 @@
             "domain": [40, 90]
           },
           "legend": {
-            "orient": "right",
-            "format": ".0f"
+            "orient": "bottom",
+            "direction": "horizontal",
+            "format": ".0f",
+            "title": "Occupancy Rate (%)",
+            "gradientLength": 300
           }
         },
         "tooltip": [
@@ -94,7 +100,7 @@
       }
     },
     {
-      "width": 800,
+      "width": "container",
       "height": 520,
       "data": {
         "url": "data/room_rates_and_occupancy_by_state.csv",

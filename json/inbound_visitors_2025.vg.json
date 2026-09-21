@@ -1,0 +1,218 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Global Inbound Tourism Flows to Australia (2024–25)",
+    "subtitle": "Flow trajectory width = Inbound visitor volume ('000). Total: 8,402.4k arrivals. Source: Tourism Research Australia.",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 20,
+    "color": "#1e293b",
+    "subtitleColor": "#64748b"
+  },
+  "width": "container",
+  "height": 500,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "projection": {
+    "type": "equalEarth",
+    "rotate": [-145, 0, 0],
+    "scale": 175
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega-datasets/master/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#f1f5f9",
+        "stroke": "#cbd5e1",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "data/inbound_visitors_2025.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "visitors_thousands": "number",
+            "share_pct": "number",
+            "orig_lat": "number",
+            "orig_lon": "number",
+            "dest_lat": "number",
+            "dest_lon": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "rule",
+        "opacity": 0.5,
+        "color": "#0284c7"
+      },
+      "encoding": {
+        "longitude": {"field": "orig_lon", "type": "quantitative"},
+        "latitude": {"field": "orig_lat", "type": "quantitative"},
+        "longitude2": {"field": "dest_lon"},
+        "latitude2": {"field": "dest_lat"},
+        "strokeWidth": {
+          "field": "visitors_thousands",
+          "type": "quantitative",
+          "title": "Inbound Volume ('000)",
+          "scale": {
+            "domain": [200, 1400],
+            "range": [1, 6]
+          },
+          "legend": {
+            "orient": "bottom-left",
+            "values": [250, 500, 1000, 1400],
+            "title": "Inbound Volume ('000)",
+            "labelFontSize": 11,
+            "titleFontSize": 12
+          }
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal", "title": "Origin Country"},
+          {"field": "visitors_thousands", "type": "quantitative", "title": "Annual Visitors ('000)", "format": ",.1f"},
+          {"field": "share_pct", "type": "quantitative", "title": "Share of Total Inbound (%)", "format": ".1f"},
+          {"field": "destination", "type": "nominal", "title": "Primary Gateway"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/inbound_visitors_2025.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "visitors_thousands": "number",
+            "share_pct": "number",
+            "orig_lat": "number",
+            "orig_lon": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "circle",
+        "color": "#0ea5e9",
+        "opacity": 0.9,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {"field": "orig_lon", "type": "quantitative"},
+        "latitude": {"field": "orig_lat", "type": "quantitative"},
+        "size": {
+          "field": "visitors_thousands",
+          "type": "quantitative",
+          "scale": {
+            "domain": [200, 1400],
+            "range": [30, 300]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "country", "type": "nominal", "title": "Origin Country"},
+          {"field": "visitors_thousands", "type": "quantitative", "title": "Arrivals ('000)", "format": ",.1f"},
+          {"field": "share_pct", "type": "quantitative", "title": "Share (%)", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/inbound_visitors_2025.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "dest_lat": "number",
+            "dest_lon": "number"
+          }
+        }
+      },
+      "transform": [
+        {"filter": "datum.country === 'New Zealand'"}
+      ],
+      "mark": {
+        "type": "point",
+        "shape": "diamond",
+        "filled": true,
+        "size": 250,
+        "color": "#dc2626",
+        "stroke": "#ffffff",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "longitude": {"field": "dest_lon", "type": "quantitative"},
+        "latitude": {"field": "dest_lat", "type": "quantitative"},
+        "tooltip": [
+          {"field": "destination", "type": "nominal", "title": "Inbound Hub"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/inbound_visitors_2025.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "dest_lat": "number",
+            "dest_lon": "number"
+          }
+        }
+      },
+      "transform": [
+        {"filter": "datum.country === 'New Zealand'"}
+      ],
+      "mark": {
+        "type": "point",
+        "shape": "circle",
+        "filled": false,
+        "size": 800,
+        "color": "#dc2626",
+        "opacity": 0.3,
+        "stroke": "#dc2626",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {"field": "dest_lon", "type": "quantitative"},
+        "latitude": {"field": "dest_lat", "type": "quantitative"}
+      }
+    },
+    {
+      "data": {
+        "url": "data/inbound_visitors_2025.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "orig_lat": "number",
+            "orig_lon": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "text",
+        "dy": -14,
+        "fontSize": 10,
+        "fontWeight": 700,
+        "fill": "#0f172a",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "longitude": {"field": "orig_lon", "type": "quantitative"},
+        "latitude": {"field": "orig_lat", "type": "quantitative"},
+        "text": {"field": "country", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
+}

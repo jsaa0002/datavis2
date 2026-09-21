@@ -1,0 +1,123 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Domestic vs. International Tourism Consumption (2016–17 to 2024–25)",
+    "subtitle": "Diverging comparison: Domestic (left) vs. International (right) in A$ Billions. Source: ABS TSA.",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 16
+  },
+  "width": "container",
+  "height": 380,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  },
+  "data": {
+    "url": "data/tourism_spending_diverging.csv"
+  },
+  "transform": [
+    {
+      "calculate": "'$' + format(datum.consumption_billions, '.1f') + 'B'",
+      "as": "label_text"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#475569",
+        "strokeWidth": 1.5,
+        "zIndex": 1
+      },
+      "encoding": {
+        "x": {"datum": 0}
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "height": 18
+      },
+      "encoding": {
+        "y": {
+          "field": "financial_year",
+          "type": "nominal",
+          "title": null,
+          "axis": {
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12
+          }
+        },
+        "x": {
+          "field": "signed_consumption_b",
+          "type": "quantitative",
+          "title": "← Domestic Spend (A$B) | International Spend (A$B) →",
+          "scale": {
+            "domain": [-160, 160]
+          },
+          "axis": {
+            "values": [-160, -120, -80, -40, 0, 40, 80, 120, 160],
+            "labelExpr": "abs(datum.value) + 'B'"
+          }
+        },
+        "color": {
+          "field": "visitor_category",
+          "type": "nominal",
+          "title": "Visitor Type",
+          "scale": {
+            "domain": ["Domestic", "International"],
+            "range": ["#0284c7", "#ea580c"]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "title": null
+          }
+        },
+        "tooltip": [
+          {"field": "financial_year", "type": "nominal", "title": "Year"},
+          {"field": "visitor_category", "type": "nominal", "title": "Segment"},
+          {"field": "label_text", "type": "nominal", "title": "Consumption"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.visitor_category == 'Domestic'"}],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "fill": "#0369a1"
+      },
+      "encoding": {
+        "y": {"field": "financial_year", "type": "nominal"},
+        "x": {"field": "signed_consumption_b", "type": "quantitative"},
+        "text": {"field": "label_text", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.visitor_category == 'International'"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "fill": "#c2410c"
+      },
+      "encoding": {
+        "y": {"field": "financial_year", "type": "nominal"},
+        "x": {"field": "signed_consumption_b", "type": "quantitative"},
+        "text": {"field": "label_text", "type": "nominal"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Capital City Hotel Pipeline & State Occupancy Pressure",
+    "subtitle": "State fill = Occupancy Rate (%). Circles = New hotel rooms added in past 12 months. Source: CoStar / AFR.",
+    "fontSize": 15,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "offset": 16
+  },
+  "width": "container",
+  "height": 520,
+  "autosize": {
+    "type": "pad",
+    "contains": "padding"
+  },
+  "projection": {
+    "type": "equirectangular",
+    "center": [133.5, -28],
+    "scale": 820
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "data/australian-states.json",
+        "format": {
+          "type": "json",
+          "property": "features"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "url": "data/capital_city_hotel_openings_occupancy.csv"
+            },
+            "key": "state",
+            "fields": ["market", "occupancy_pct", "new_hotel_rooms", "new_hotels"]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "color": {
+          "field": "occupancy_pct",
+          "type": "quantitative",
+          "title": "Occupancy Rate (%)",
+          "scale": {
+            "domain": [55, 85],
+            "scheme": "blues"
+          },
+          "legend": {
+            "orient": "bottom-left",
+            "direction": "horizontal",
+            "gradientLength": 200,
+            "format": ".0f"
+          }
+        },
+        "tooltip": [
+          {"field": "properties.STATE_NAME", "type": "nominal", "title": "State/Territory"},
+          {"field": "market", "type": "nominal", "title": "Primary Capital Market"},
+          {"field": "occupancy_pct", "type": "quantitative", "title": "Occupancy Rate (%)", "format": ".1f"},
+          {"field": "new_hotel_rooms", "type": "quantitative", "title": "New Rooms", "format": ",.0f"},
+          {"field": "new_hotels", "type": "quantitative", "title": "New Hotels Opened"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/capital_city_hotel_openings_occupancy.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "latitude": "number",
+            "longitude": "number",
+            "new_hotel_rooms": "number"
+          }
+        }
+      },
+      "transform": [
+        {"filter": "datum.new_hotel_rooms > 0"}
+      ],
+      "mark": {
+        "type": "circle",
+        "color": "#f97316",
+        "opacity": 0.85,
+        "stroke": "#7c2d12",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "size": {
+          "field": "new_hotel_rooms",
+          "type": "quantitative",
+          "title": "New Rooms Opened",
+          "scale": {
+            "domain": [0, 1200],
+            "range": [40, 600]
+          },
+          "legend": {
+            "orient": "bottom-right",
+            "values": [100, 500, 1000]
+          }
+        },
+        "tooltip": [
+          {"field": "market", "type": "nominal", "title": "Market"},
+          {"field": "new_hotel_rooms", "type": "quantitative", "title": "Rooms Added", "format": ",.0f"},
+          {"field": "new_hotels", "type": "quantitative", "title": "Hotels Added"},
+          {"field": "occupancy_pct", "type": "quantitative", "title": "Market Occupancy (%)", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/capital_city_hotel_openings_occupancy.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "latitude": "number",
+            "longitude": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#0f172a"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "market", "type": "nominal"}
+      }
+    }
+  ]
+}
