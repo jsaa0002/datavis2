@@ -25,20 +25,146 @@
   <body>
     <div class="page-container">
       <header>
-        <h1>Australian Tourist Accommodation Overview (2014–2016)</h1>
+        <h1>Australia's Tourism Accommodation</h1>
         <p class="subtitle">
           Exploring national performance metrics across accommodation classes
           and state jurisdictions.
         </p>
       </header>
       <div class="pure-g chart-row">
-        <!-- Left Chart: Class Trends -->
-        <div class="pure-u-1-1 chart-cell">
+        <div class="pure-u-1 chart-cell">
           <div class="chart-card">
             <div id="vis-tourism-consumption" class="vis-container"></div>
+          </div>
+        </div>
+        <div class="pure-u-1 chart-cell">
+          <div class="story-card">
+            <h3 class="story-title">
+              Domestic Resilience and Global Reconnection
+            </h3>
+            <p class="story-text">
+              The pandemic fundamentally altered the balance of Australia's
+              visitor economy, creating two distinct recovery paths. With
+              international borders closed, the accommodation sector survived
+              primarily because local travellers redirected their spending
+              across regional and interstate destinations. This sustained
+              domestic demand buffered hotels from complete operational collapse
+              and established a solid baseline that continued expanding even
+              after border restrictions were lifted.
+            </p>
+            <p class="story-text">
+              In contrast, overseas visitor spend effectively vanished
+              overnight. While international travel has since mounted an
+              aggressive multi-year comeback across major transit corridors and
+              commercial gateways, total market value remains heavily tilted
+              toward Australian residents traveling within their own borders.
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> Australian Bureau of Statistics (ABS),
+              Tourism Satellite Account (TSA) Table 4.2.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 pure-u-lg-2-3 chart-cell">
+          <div class="chart-card">
+            <div id="vis-tourism-spending" class="vis-container"></div>
+          </div>
+        </div>
+        <div class="pure-u-1 pure-u-lg-1-3 chart-cell">
+          <div class="story-card">
+            <h3 class="story-title">Accommodation Rebound Trajectory</h3>
+            <p class="story-text">
+              Accommodation services emerged as the primary growth engine of
+              Australia's internal tourism economy[cite: 14]. While
+              industry-wide spending contracted severely during border closures
+              in 2020–21, accommodation expenditure experienced an aggressive
+              turnaround, expanding from <strong>$10.1B</strong> at the pandemic
+              trough to <strong>$21.8B</strong> in 2024–25[cite: 4, 11, 14].
+            </p>
+            <div class="story-callout">
+              <span class="callout-stat">+116.3%</span>
+              <span class="callout-desc"
+                >Post-pandemic nominal surge in internal accommodation spending
+                ($10.1B to $21.8B)[cite: 4, 11, 14].</span
+              >
+            </div>
+            <p class="story-metadata">
+              <strong>Source:</strong> Australian Bureau of Statistics (ABS),
+              Tourism Satellite Account (TSA), Table 4.1[cite: 4, 14].
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g chart-row">
+        <div class="pure-u-1-2 chart-cell">
+          <div class="chart-card">
+            <div id="vis-market_share_type" class="vis-container"></div>
             <p class="caption">
-              placeholder
-              <br />https://www.abs.gov.au/articles/overseas-arrivals-and-departures-australia-2024-25-financial-year
+              Market share of Australian accommodation types by revenue,
+              2024[cite: 5, 7].
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-1-2 chart-cell">
+          <div class="chart-card">
+            <div id="vis-market_share_sector" class="vis-container"></div>
+            <p class="caption">
+              Market share of Australian accommodation types by revenue,
+              2024[cite: 5, 7].
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g chart-row">
+        <div class="pure-u-1 chart-cell">
+          <div class="story-card">
+            <h3 class="story-title">Market Breakdown</h3>
+            <p class="story-text">
+              Hotels rank highest among accommodation types, driving the vast
+              majority of industry revenue compared to serviced apartments,
+              resorts, and motels[cite: 5, 7]. Across the broader tourism
+              market, core accommodation makes up the largest share, closely
+              followed by food and beverage spending[cite: 5, 7].
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> Industry Hospitality Benchmarks & Market
+              Reports (2024)[cite: 5, 7].
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="pure-g chart-row">
+        <!-- Left: Inbound Tourism Flow Map -->
+        <div class="pure-u-1 pure-u-lg-2-3 chart-cell">
+          <div class="chart-card">
+            <div id="vis-inbound-visitors" class="vis-container"></div>
+            <p class="caption">
+              Global inbound tourism flows to Australia, 2024–25. Source:
+              Tourism Research Australia / ABS.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Story Card -->
+        <div class="pure-u-1 pure-u-lg-1-3 chart-cell">
+          <div class="story-card">
+            <h3 class="story-title">Key International Feeder Markets</h3>
+            <p class="story-text">
+              International guest arrivals remain heavily reliant on proximate
+              regional neighbours and traditional English-speaking corridors.
+              New Zealand stands out as the largest single contributor to
+              overseas visitation, while East Asian markets—principally China,
+              Japan, and South Korea—collectively funnel substantial visitor
+              traffic into major Australian gateways. Long-haul arrivals from
+              the United States and the United Kingdom continue to provide
+              steady demand, ensuring a diverse balance between regional
+              short-haul visitors and high-value long-stay travellers.
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> Tourism Research Australia (TRA),
+              International Visitor Arrivals (2024–25).
             </p>
           </div>
         </div>
@@ -51,7 +177,7 @@
             <div id="vis-class-trends" class="vis-container"></div>
             <p class="caption">
               Quarterly occupancy trajectory tracked across operational quality
-              classes.
+              classes[cite: 6].
             </p>
           </div>
         </div>
@@ -62,24 +188,38 @@
             <div id="vis-state-takings" class="vis-container"></div>
             <p class="caption">
               Comparative gross revenue ($'000) generated by each State and
-              Territory.
+              Territory[cite: 6].
             </p>
           </div>
         </div>
       </div>
       <div class="pure-g chart-row">
-        <!-- Left Chart: Class Trends -->
-        <div class="pure-u-1-1 chart-cell">
-          <div class="chart-card">
-            <div id="vis-inbound-visitors" class="vis-container"></div>
-            <p class="caption">
-              placeholder
-              <br />https://www.abs.gov.au/articles/overseas-arrivals-and-departures-australia-2024-25-financial-year
+        <div class="pure-u-1 chart-cell">
+          <div class="story-card">
+            <h3 class="story-title">
+              Performance Tiers and Revenue Concentration
+            </h3>
+            <p class="story-text">
+              Occupancy rates track directly with property tier, with luxury and
+              upscale establishments maintaining higher, more stable room
+              utilisation across every season[cite: 6]. In contrast, mid-scale
+              and budget options experience softer demand throughout the year,
+              widening the performance gap between market segments[cite: 6].
+            </p>
+            <p class="story-text">
+              Gross takings remain heavily concentrated along the eastern
+              seaboard[cite: 6]. New South Wales commands the largest market
+              volume by a clear margin, with Queensland and Victoria following,
+              while the remaining states and territories generate smaller
+              regional revenue footprints[cite: 6].
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> Australian Bureau of Statistics (ABS),
+              Survey of Tourist Accommodation (STA)[cite: 6].
             </p>
           </div>
         </div>
       </div>
-
       <div class="pure-g chart-row">
         <div class="pure-u-1 chart-cell">
           <div class="chart-card">
@@ -89,88 +229,192 @@
               style="text-align: center"
             ></div>
             <p class="caption">
-              Graduated symbol map displaying regional daily room rates (circle
-              area) and occupancy rates (circle color) for March 2024. Sources:
-              STR Global / Ray White.
+              Graduated symbol map displaying regional daily room rates and
+              occupancy rates for March 2024[cite: 7]. Sources: STR Global / Ray
+              White[cite: 7].
             </p>
           </div>
         </div>
       </div>
       <div class="pure-g chart-row">
-        <!-- Left Chart: Class Trends -->
-        <div class="pure-u-1-2 chart-cell">
-          <div class="chart-card">
-            <div id="vis-market_share_type" class="vis-container"></div>
-            <p class="caption">
-              Market share of Australian accommodation types by revenue, 2024.
+        <div class="pure-u-1 chart-cell">
+          <div class="story-card">
+            <h3 class="story-title">
+              Regional Pricing Power and Demand Disparities
+            </h3>
+            <p class="story-text">
+              Key metropolitan centres, particularly Sydney, Melbourne, and
+              Perth—combine strong room rates with elevated occupancy levels,
+              reflecting stable business activity and continuous leisure
+              travel[cite: 7]. Meanwhile, leisure hubs such as the Gold Coast
+              and Cairns maintain consistent seasonal pricing[cite: 7].
             </p>
-          </div>
-        </div>
-        <div class="pure-u-1-2 chart-cell">
-          <div class="chart-card">
-            <div id="vis-market_share_sector" class="vis-container"></div>
-            <p class="caption">
-              Market share of Australian accommodation types by revenue, 2024.
+            <p class="story-text">
+              In contrast, northern regional markets such as Darwin experience
+              pronounced seasonal divergence, characterized by sharp off-peak
+              occupancy drops even as Southern and Western capital gateways
+              sustain solid operational baselines[cite: 7].
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> STR Global / Ray White Commercial (March
+              2024)[cite: 7].
             </p>
           </div>
         </div>
       </div>
+
       <div class="pure-g chart-row">
-        <!-- Left Chart: Class Trends -->
-        <div class="pure-u-1-1 chart-cell">
+        <div class="pure-u-1 pure-u-lg-2-3 chart-cell">
           <div class="chart-card">
             <div id="vis-visitor_nights" class="vis-container"></div>
             <p class="caption">
               International visitor nights by accommodation type, year ending
-              December 2024. Area = nights ('000). Colour = % change vs 2023.
-              Source: ABS.
+              December 2024. Area = nights ('000). Colour = % change vs
+              2023[cite: 7]. Source: ABS[cite: 7].
+            </p>
+          </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-lg-1-3 chart-cell">
+          <div class="story-card auto-height">
+            <h3 class="story-title">Shift Toward Commercial Stays</h3>
+            <p class="story-text">
+              While private stays with friends and family continue to absorb the
+              largest share of total overseas visitor nights, international
+              demand has shifted strongly toward commercial lodgings[cite: 7].
+              Hotels, resorts, and short-term rental homes experienced the
+              strongest year-on-year growth, showing that returning overseas
+              travellers are increasingly prioritising paid accommodations[cite:
+              7].
+            </p>
+            <p class="story-text">
+              Conversely, budget and youth sectors like backpacker hostels
+              lagged behind, contracting year-on-year and highlighting a
+              distinct divergence in how different international traveler
+              segments choose to stay[cite: 7].
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> Australian Bureau of Statistics (ABS) /
+              Tourism Research Australia (TRA), International Visitor Survey
+              (2024)[cite: 7].
             </p>
           </div>
         </div>
       </div>
       <div class="pure-g chart-row">
-        <!-- Left Chart: Class Trends -->
-        <div class="pure-u-1-1 chart-cell">
+        <!-- Full-Width Chart: Tourism Jobs -->
+        <div class="pure-u-1 chart-cell">
           <div class="chart-card">
             <div id="vis-tourism-jobs" class="vis-container"></div>
             <p class="caption">
-              tourism jobs placeholder<br />https://www.abs.gov.au/statistics/economy/national-accounts/tourism-satellite-account/latest-release
+              Change in Australian tourism filled jobs by industry (2023–24 to
+              2024–25)[cite: 7]. Source: ABS Tourism Satellite Account[cite: 7].
             </p>
           </div>
         </div>
       </div>
+
       <div class="pure-g chart-row">
-        <!-- Left Chart: Class Trends -->
-        <div class="pure-u-1-1 chart-cell">
-          <div class="chart-card">
-            <div id="vis-tourism-spending" class="vis-container"></div>
-            <p class="caption">
-              placeholder
-              <br />https://www.abs.gov.au/statistics/economy/national-accounts/tourism-satellite-account/latest-release
+        <!-- Story Card Below -->
+        <div class="pure-u-1 chart-cell">
+          <div class="story-card auto-height">
+            <h3 class="story-title">Accommodation Leads Sector Employment</h3>
+            <p class="story-text">
+              Accommodation served as the primary employment driver across the
+              entire tourism economy, adding more filled positions than every
+              other growing sector combined[cite: 7]. The operational demand
+              required to service returning domestic and international guests
+              forced hotels to aggressively rebuild their front-line
+              workforces[cite: 7].
+            </p>
+            <p class="story-text">
+              Meanwhile, passenger transport and general tourism services saw
+              net contractions, showing that industry labour recovery remains
+              heavily centred on lodging rather than transit networks[cite: 7].
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> Australian Bureau of Statistics (ABS),
+              Tourism Satellite Account (TSA) Table 5 (Filled Jobs)[cite: 7].
             </p>
           </div>
         </div>
       </div>
+
       <div class="pure-g chart-row">
-        <!-- Left Chart: Class Trends -->
-        <div class="pure-u-1-1 chart-cell">
+        <!-- Left: Hotel Pipeline Map -->
+        <div class="pure-u-1 pure-u-lg-2-3 chart-cell">
           <div class="chart-card">
             <div id="vis-new-hotels" class="vis-container"></div>
             <p class="caption">
-              placeholder
-              <br />https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.afr.com%2Fproperty%2Fcommercial%2Fhoteliers-opt-for-sydney-amid-melbourne-s-room-glut-20260818-p60pfl&ved=0CBYQjRxqGAoTCIjmzcy79JYDFQAAAAAdAAAAABDtAg&opi=89978449
+              Capital city hotel room supply additions and state occupancy
+              levels[cite: 8]. Sources: CoStar / Australian Financial
+              Review[cite: 8].
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Story Card -->
+        <div class="pure-u-1 pure-u-lg-1-3 chart-cell">
+          <div class="story-card auto-height">
+            <h3 class="story-title">
+              Development Pressure and Supply Disparity
+            </h3>
+            <p class="story-text">
+              Capital additions reveal diverging supply conditions across key
+              markets[cite: 8]. Melbourne added the largest concentration of new
+              hotel rooms, putting downward pressure on utilisation even as
+              broader state occupancy remains steady[cite: 8]. Sydney and
+              Brisbane saw moderate additions, keeping supply in closer balance
+              with incoming visitor volume[cite: 8].
+            </p>
+            <p class="story-text">
+              Smaller capital markets like Adelaide, Perth, and Hobart saw
+              limited room expansion, preserving tighter baseline occupancy
+              across their accommodation networks[cite: 8].
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> CoStar / The Australian Financial Review
+              (AFR)[cite: 8].
             </p>
           </div>
         </div>
       </div>
       <div class="pure-g chart-row">
-        <!-- Left Chart: Class Trends -->
-        <div class="pure-u-1-1 chart-cell">
+        <!-- Full-Width Concluding Chart: Industry Challenges -->
+        <div class="pure-u-1 chart-cell">
           <div class="chart-card">
             <div id="vis-challenges" class="vis-container"></div>
             <p class="caption">
-              placeholder
-              <br />https://www.statista.com/chart/31186/leading-challenges-for-the-australian-accommodation-industry/
+              Leading challenges reported by Australian accommodation
+              operators[cite: 9]. Sources: Booking.com / Statista[cite: 9].
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pure-g chart-row">
+        <!-- Story Card Below -->
+        <div class="pure-u-1 chart-cell">
+          <div class="story-card auto-height">
+            <h3 class="story-title">
+              Rising Costs Threaten Industry Sustainability
+            </h3>
+            <p class="story-text">
+              While visitor volumes and revenues have largely normalised across
+              Australia, rising overheads continue to pressure operator profit
+              margins[cite: 9]. Energy costs, taxation, and labour expenses are
+              the most widespread operational burdens, exceeding typical
+              industry averages[cite: 9].
+            </p>
+            <p class="story-text">
+              Combined with increasing capital investment costs and economic
+              uncertainty, long-term profitability increasingly depends on
+              managing persistent cost inflation and operational expenses[cite:
+              9].
+            </p>
+            <p class="story-metadata">
+              <strong>Source:</strong> Statista / Booking.com Accommodation
+              Barometer[cite: 9].
             </p>
           </div>
         </div>
